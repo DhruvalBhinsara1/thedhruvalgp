@@ -3,12 +3,10 @@ import predictionsData from '../assets/data/Predictions.json';
 
 const Predictions = () => {
     const [predictions, setPredictions] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     useEffect(() => {
-        // Load the JSON data
         setPredictions(predictionsData);
-
-        // Calculate accurate timestamps
         const updatedPredictions = predictionsData.map(item => ({
             ...item,
             timestamp: calculateTimeAgo(new Date(item.date_of_upload))
@@ -16,9 +14,8 @@ const Predictions = () => {
         setPredictions(updatedPredictions);
     }, []);
 
-    // Function to calculate time ago
     const calculateTimeAgo = (date) => {
-        const now = new Date('2025-04-15T22:42:00-07:00'); // Current time: April 15, 2025, 10:42 PM PDT
+        const now = new Date('2025-04-15T22:42:00-07:00');
         const diffMs = now - date;
         const diffSeconds = Math.floor(diffMs / 1000);
         const diffMinutes = Math.floor(diffSeconds / 60);
@@ -31,12 +28,20 @@ const Predictions = () => {
         return `${diffSeconds}s ago`;
     };
 
+    const handleCardClick = (item) => {
+        setSelectedItem(item);
+    };
+
+    const closeModal = () => {
+        setSelectedItem(null);
+    };
+
     return (
         <section id="predictions">
             <h2>Predictions</h2>
             <div className="carousel">
                 {predictions.map((item) => (
-                    <article className="card" key={item.id}>
+                    <article className="card" key={item.id} onClick={() => handleCardClick(item)}>
                         <span className="card-badge prediction">Prediction</span>
                         <img
                             src={item.img}
@@ -54,6 +59,28 @@ const Predictions = () => {
                     </article>
                 ))}
             </div>
+
+            {selectedItem && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>
+                            ×
+                        </button>
+                        <img
+                            src={selectedItem.img}
+                            alt={selectedItem.title}
+                            className="modal-image"
+                        />
+                        <h3 className="modal-title">{selectedItem.title}</h3>
+                        <p className="modal-description">{selectedItem.content_text}</p>
+                        <p className="modal-text">{selectedItem.detailed_predictions}</p>
+                        <div className="modal-meta">
+                            <span className="timestamp">{selectedItem.timestamp}</span>
+                            <span className="source">TheDhruvalGP</span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

@@ -1,23 +1,26 @@
 [
     {
         "id": "1",
-        "thumbnail": "/images//liam.jpg",
+        "thumbnail": "/images/liam.jpg",
         "title": "Liam Humbled Back to Racing Bulls",
         "description": "After a very long time with RedBull for 2 weeks Liam is kicked to the Junior Team.😂",
+        "detailed_description": "Liam Lawson’s brief stint with Red Bull lasted just two weeks before he was sent back to the Racing Bulls junior team. The decision has sparked debate among fans, with some citing his lack of experience as the reason, while others question Red Bull’s strategy. This move could be a humbling experience, but it might also set the stage for a future comeback. 😂",
         "date_of_upload": "2025-04-15T21:42:00-07:00"
     },
     {
         "id": "2",
-        "thumbnail": "/images//landonowins.jpg",
+        "thumbnail": "/images/landonowins.jpg",
         "title": "Lando NoWins Bottles Another",
         "description": "Norris fumbles yet another race while his teammate shines. Same car, mate. 😬",
+        "detailed_description": "Lando Norris has once again failed to capitalize on a strong car, bottling another race while his McLaren teammate Oscar Piastri shines. Despite driving the same machinery, Norris’s inconsistency continues to puzzle fans and analysts. This pattern raises questions about his mental game and whether McLaren needs to rethink their driver lineup. 😬",
         "date_of_upload": "2025-04-15T19:42:00-07:00"
     },
     {
-        "id": "2",
-        "thumbnail": "/images//landonowins.jpg",
+        "id": "3",
+        "thumbnail": "/images/landonowins.jpg",
         "title": "Lando NoWins Bottles Another",
         "description": "Norris fumbles yet another race while his teammate shines. Same car, mate. 😬",
+        "detailed_description": "Lando Norris has once again failed to capitalize on a strong car, bottling another race while his McLaren teammate Oscar Piastri shines. Despite driving the same machinery, Norris’s inconsistency continues to puzzle fans and analysts. This pattern raises questions about his mental game and whether McLaren needs to rethink their driver lineup. 😬",
         "date_of_upload": "2025-04-15T19:42:00-07:00"
     }
 ]

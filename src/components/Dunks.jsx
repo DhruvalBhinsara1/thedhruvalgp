@@ -3,17 +3,16 @@ import dunksData from '../assets/data/Dunks.json';
 
 const Dunks = () => {
     const [dunks, setDunks] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         try {
-            // Load the JSON data
             if (!dunksData || !Array.isArray(dunksData)) {
                 throw new Error('Invalid or missing dunk data');
             }
             setDunks(dunksData);
 
-            // Calculate accurate timestamps
             const updatedDunks = dunksData.map(item => ({
                 ...item,
                 timestamp: calculateTimeAgo(new Date(item.date_of_upload))
@@ -25,9 +24,8 @@ const Dunks = () => {
         }
     }, []);
 
-    // Function to calculate time ago
     const calculateTimeAgo = (date) => {
-        const now = new Date('2025-04-15T22:42:00-07:00'); // Current time: April 15, 2025, 10:42 PM PDT
+        const now = new Date('2025-04-15T22:42:00-07:00');
         const diffMs = now - date;
         const diffSeconds = Math.floor(diffMs / 1000);
         const diffMinutes = Math.floor(diffSeconds / 60);
@@ -40,6 +38,14 @@ const Dunks = () => {
         return `${diffSeconds}s ago`;
     };
 
+    const handleCardClick = (item) => {
+        setSelectedItem(item);
+    };
+
+    const closeModal = () => {
+        setSelectedItem(null);
+    };
+
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -50,7 +56,7 @@ const Dunks = () => {
             <div className="carousel">
                 {dunks.length > 0 ? (
                     dunks.map((item) => (
-                        <article className="card" key={item.id}>
+                        <article className="card" key={item.id} onClick={() => handleCardClick(item)}>
                             <span className="card-badge">Dunk</span>
                             <img
                                 src={item.thumbnail}
@@ -72,6 +78,28 @@ const Dunks = () => {
                     <p>Loading dunks...</p>
                 )}
             </div>
+
+            {selectedItem && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>
+                            ×
+                        </button>
+                        <img
+                            src={selectedItem.thumbnail}
+                            alt={selectedItem.title}
+                            className="modal-image"
+                        />
+                        <h3 className="modal-title">{selectedItem.title}</h3>
+                        <p className="modal-description">{selectedItem.description}</p>
+                        <p className="modal-text">{selectedItem.detailed_description}</p>
+                        <div className="modal-meta">
+                            <span className="timestamp">{selectedItem.timestamp}</span>
+                            <span className="source">TheDhruvalGP</span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

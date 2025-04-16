@@ -4,6 +4,7 @@
         "img": "/images/ferrari.jpg",
         "title": "Monaco GP Winner",
         "content_text": "Calling it: Leclerc takes the home win. Confidence: ★★★★☆",
+        "detailed_predictions": "Charles Leclerc is predicted to clinch the Monaco GP, leveraging his home-track advantage and Ferrari’s recent upgrades. With a confidence rating of ★★★★☆, analysts expect a strong performance, though tire strategy and weather could play a role. This could be a defining moment for Ferrari this season.",
         "date_of_upload": "2025-04-13T22:42:00-07:00"
     },
     {
@@ -11,6 +12,7 @@
         "img": "/images/landovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
+        "detailed_predictions": "A heated rivalry is brewing between Max Verstappen and Lando Norris, with a ★★★★★ confidence rating. Recent on-track incidents suggest a clash is imminent, potentially at the next race. This drama could shake up the championship standings, with both drivers pushing their limits.",
         "date_of_upload": "2025-04-14T22:42:00-07:00"
     },
     {
@@ -18,13 +20,15 @@
         "img": "/images/landovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
+        "detailed_predictions": "A heated rivalry is brewing between Max Verstappen and Lando Norris, with a ★★★★★ confidence rating. Recent on-track incidents suggest a clash is imminent, potentially at the next race. This drama could shake up the championship standings, with both drivers pushing their limits.",
         "date_of_upload": "2025-04-14T22:42:00-07:00"
     },
     {
-        "id": "4    ",
+        "id": "4",
         "img": "/images/landovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
+        "detailed_predictions": "A heated rivalry is brewing between Max Verstappen and Lando Norris, with a ★★★★★ confidence rating. Recent on-track incidents suggest a clash is imminent, potentially at the next race. This drama could shake up the championship standings, with both drivers pushing their limits.",
         "date_of_upload": "2025-04-14T22:42:00-07:00"
     },
     {
@@ -32,6 +36,7 @@
         "img": "/images/landovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
+        "detailed_predictions": "A heated rivalry is brewing between Max Verstappen and Lando Norris, with a ★★★★★ confidence rating. Recent on-track incidents suggest a clash is imminent, potentially at the next race. This drama could shake up the championship standings, with both drivers pushing their limits.",
         "date_of_upload": "2025-04-14T22:42:00-07:00"
     }
 ]

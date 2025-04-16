@@ -7,7 +7,7 @@ const Header = ({ isMenuOpen, toggleMenu }) => {
             <nav>
                 <ul className={isMenuOpen ? 'active' : ''}>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#news">Videos</a></li>
+                    <li><a href="#latest-videos">Videos</a></li>
                     <li><a href="#news">News</a></li>
                     <li><a href="#predictions">Predictions</a></li>
                     <li><a href="#dunks">Dunks</a></li>
