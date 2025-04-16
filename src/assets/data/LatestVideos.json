@@ -1,0 +1,42 @@
+[
+    {
+        "id": "1",
+        "thumbnail": "./src/assets/images/ferrari.jpg",
+        "video_url": "https://www.youtube.com/watch?v=1Nw9IBN5itE",
+        "title": "Ferrari Strategy Breakdown",
+        "description": "A deep dive into Ferrari's latest pit wall decisions. What went wrong? 🎥",
+        "date_of_upload": "2025-04-15T20:42:00-07:00"
+    },
+    {
+        "id": "2",
+        "thumbnail": "./src/assets/images/ferrari.jpg",
+        "video_url": "https://www.youtube.com/watch?v=5Wt9tRAvu1E",
+        "title": "Mercedes Comeback Analysis",
+        "description": "Are the Silver Arrows back? Let's analyze the data! 🚗",
+        "date_of_upload": "2025-04-15T18:42:00-07:00"
+    },
+    {
+        "id": "3",
+        "thumbnail": "./src/assets/images/ferrari.jpg",
+        "video_url": "https://www.youtube.com/watch?v=5Wt9tRAvu1E",
+        "title": "Mercedes Comeback Analysis",
+        "description": "Are the Silver Arrows back? Let's analyze the data! 🚗",
+        "date_of_upload": "2025-04-15T18:42:00-07:00"
+    },
+    {
+        "id": "4",
+        "thumbnail": "./src/assets/images/ferrari.jpg",
+        "video_url": "https://www.youtube.com/watch?v=5Wt9tRAvu1E",
+        "title": "Mercedes Comeback Analysis",
+        "description": "Are the Silver Arrows back? Let's analyze the data! 🚗",
+        "date_of_upload": "2025-04-15T18:42:00-07:00"
+    },
+    {
+        "id": "5",
+        "thumbnail": "./src/assets/images/ferrari.jpg",
+        "video_url": "https://www.youtube.com/watch?v=5Wt9tRAvu1E",
+        "title": "Mercedes Comeback Analysis",
+        "description": "Are the Silver Arrows back? Let's analyze the data! 🚗",
+        "date_of_upload": "2025-04-15T18:42:00-07:00"
+    }
+]

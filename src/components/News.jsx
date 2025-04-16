@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import MercedesImage from '../assets/images/mercedes.jpg';
 import newsData from '../assets/data/News.json';
 
 const News = () => {
@@ -40,7 +39,7 @@ const News = () => {
                     <article className="card" key={item.id}>
                         <span className="card-badge">News</span>
                         <img
-                            src={item.img === "../assets/images/mercedes.jpg" ? MercedesImage : item.img}
+                            src={item.img}
                             alt={item.title}
                             className="card-image"
                         />

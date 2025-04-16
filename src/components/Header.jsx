@@ -7,10 +7,11 @@ const Header = ({ isMenuOpen, toggleMenu }) => {
             <nav>
                 <ul className={isMenuOpen ? 'active' : ''}>
                     <li><a href="#home">Home</a></li>
+                    <li><a href="#news">Videos</a></li>
                     <li><a href="#news">News</a></li>
                     <li><a href="#predictions">Predictions</a></li>
                     <li><a href="#dunks">Dunks</a></li>
-                
+
                 </ul>
             </nav>
             <button
@@ -28,7 +29,7 @@ const Header = ({ isMenuOpen, toggleMenu }) => {
                     <li><a href="#news">News</a></li>
                     <li><a href="#predictions">Predictions</a></li>
                     <li><a href="#dunks">Dunks</a></li>
-                 
+
                 </ul>
             </div>
         </header>

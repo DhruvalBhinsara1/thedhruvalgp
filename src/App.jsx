@@ -6,6 +6,7 @@ import Predictions from './components/Predictions';
 import Dunks from './components/Dunks';
 import Facts from './components/Facts';
 import Footer from './components/Footer';
+import LatestVideos from './components/LatestVideos'; // Added this import
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,6 +55,7 @@ const App = () => {
     <div className="app">
       <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <Hero />
+      <LatestVideos />
       <News />
       <Predictions />
       <Dunks />

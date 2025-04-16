@@ -22,6 +22,8 @@ html {
     width: 100%;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    /* Ensure full height */
 }
 
 *,
@@ -40,6 +42,8 @@ body {
     overflow-x: hidden;
     position: relative;
     width: 100%;
+    min-height: 100vh;
+    /* Ensure full height */
 }
 
 /* Background Circles */
@@ -317,8 +321,11 @@ section {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
+    min-height: 100px;
+    /* Ensure section has minimum height */
 }
 
+/* Update section h2 to apply to all sections */
 section h2 {
     font-size: clamp(2.2rem, 5vw, 2.8rem);
     font-weight: 700;
@@ -335,6 +342,8 @@ section h2 {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 1rem 0;
+    min-height: 300px;
+    /* Ensure carousel has minimum height */
 }
 
 @media (max-width: 768px) {
@@ -364,6 +373,17 @@ section h2 {
 .card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-hover);
+}
+
+/* Video Styling */
+.card-video {
+    width: 100%;
+    height: 40%;
+    /* Matches the previous image height */
+    object-fit: cover;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    background: var(--bg-dark);
+    /* Fallback background */
 }
 
 .card-image {
@@ -451,6 +471,12 @@ section h2 {
 
 .card-badge.prediction {
     background: var(--secondary);
+}
+
+/* Specific Badge for Videos */
+.card-badge.video {
+    background: #00ff00;
+    /* Green for videos, adjustable as needed */
 }
 
 /* Facts Section */

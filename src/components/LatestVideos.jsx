@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import dunksData from '../assets/data/Dunks.json';
+import latestVideosData from '../assets/data/LatestVideos.json';
 
-const Dunks = () => {
-    const [dunks, setDunks] = useState([]);
+const LatestVideos = () => {
+    const [videos, setVideos] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         try {
             // Load the JSON data
-            if (!dunksData || !Array.isArray(dunksData)) {
-                throw new Error('Invalid or missing dunk data');
+            if (!latestVideosData || !Array.isArray(latestVideosData)) {
+                throw new Error('Invalid or missing video data');
             }
-            setDunks(dunksData);
+            setVideos(latestVideosData);
 
             // Calculate accurate timestamps
-            const updatedDunks = dunksData.map(item => ({
+            const updatedVideos = latestVideosData.map(item => ({
                 ...item,
                 timestamp: calculateTimeAgo(new Date(item.date_of_upload))
             }));
-            setDunks(updatedDunks);
+            setVideos(updatedVideos);
         } catch (err) {
             setError(err.message);
-            console.error('Error loading dunk data:', err);
+            console.error('Error loading video data:', err);
         }
     }, []);
 
@@ -45,13 +45,13 @@ const Dunks = () => {
     }
 
     return (
-        <section id="dunks">
-            <h2>Dunks</h2>
+        <section id="latest-videos">
+            <h2>Latest Videos</h2>
             <div className="carousel">
-                {dunks.length > 0 ? (
-                    dunks.map((item) => (
+                {videos.length > 0 ? (
+                    videos.map((item) => (
                         <article className="card" key={item.id}>
-                            <span className="card-badge">Dunk</span>
+                            <span className="card-badge">Video</span>
                             <img
                                 src={item.thumbnail}
                                 alt={item.title}
@@ -69,11 +69,11 @@ const Dunks = () => {
                         </article>
                     ))
                 ) : (
-                    <p>Loading dunks...</p>
+                    <p>Loading videos...</p>
                 )}
             </div>
         </section>
     );
 };
 
-export default Dunks;
+export default LatestVideos;
