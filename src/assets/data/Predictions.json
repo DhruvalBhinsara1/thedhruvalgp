@@ -1,35 +1,35 @@
 [
     {
         "id": "1",
-        "img": "./src/assets/imagesferrari.jpg",
+        "img": "/imagesferrari.jpg",
         "title": "Monaco GP Winner",
         "content_text": "Calling it: Leclerc takes the home win. Confidence: ★★★★☆",
         "date_of_upload": "2025-04-13T22:42:00-07:00"
     },
     {
         "id": "2",
-        "img": "./src/assets/imageslandovsmax.jpg",
+        "img": "/imageslandovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
         "date_of_upload": "2025-04-14T22:42:00-07:00"
     },
     {
         "id": "3",
-        "img": "./src/assets/imageslandovsmax.jpg",
+        "img": "/imageslandovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
         "date_of_upload": "2025-04-14T22:42:00-07:00"
     },
     {
         "id": "4    ",
-        "img": "./src/assets/imageslandovsmax.jpg",
+        "img": "/imageslandovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
         "date_of_upload": "2025-04-14T22:42:00-07:00"
     },
     {
         "id": "5",
-        "img": "./src/assets/imageslandovsmax.jpg",
+        "img": "/imageslandovsmax.jpg",
         "title": "Driver Drama Incoming",
         "content_text": "Max vs. Lando sparks fly soon. Confidence: ★★★★★",
         "date_of_upload": "2025-04-14T22:42:00-07:00"

@@ -1,5 +1,5 @@
 import React from 'react';
-import SplashScreen from '/src/assets/images/splash-screen.mp4';
+import SplashScreen from '/public/images/splash-screen.mp4';
 
 const Hero = () => {
     return (
