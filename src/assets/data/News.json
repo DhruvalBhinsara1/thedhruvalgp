@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "Ferrari’s Latest Strategy Blunder",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgGBKLQlA9M9Xrgz3bg8hoL-633MIUxUoH6Q7sj_TkEef8rHg67GfeTznYZl_nYbUIt0c&usqp=CAU",
+        "content_text": "Another race, another questionable call. Ferrari’s pit wall flops again. 😑",
+        "video_link": "https://example.com/video1",
+        "date_of_upload": "2025-04-15T10:00:00-07:00"
+    },
+    {
+        "id": 2,
+        "title": "Mercedes’ Comeback?",
+        "img": "../assets/images/mercedes.jpg",
+        "content_text": "Silver Arrows show pace, but is it real or just a mirage? 🤔",
+        "video_link": "",
+        "date_of_upload": "2025-04-15T08:00:00-07:00"
+    },
+    {
+        "id": 3,
+        "title": "Mercedes’ Comeback?",
+        "img": "../assets/images/mercedes.jpg",
+        "content_text": "Silver Arrows show pace, but is it real or just a mirage? 🤔",
+        "video_link": "",
+        "date_of_upload": "2025-04-15T08:00:00-07:00"
+    },
+    {
+        "id": 4,
+        "title": "Mercedes’ Comeback?",
+        "img": "../assets/images/mercedes.jpg",
+        "content_text": "Silver Arrows show pace, but is it real or just a mirage? 🤔",
+        "video_link": "",
+        "date_of_upload": "2025-04-15T08:00:00-07:00"
+    },
+    {
+        "id": 5,
+        "title": "Mercedes’ Comeback?",
+        "img": "../assets/images/mercedes.jpg",
+        "content_text": "Silver Arrows show pace, but is it real or just a mirage? 🤔",
+        "video_link": "",
+        "date_of_upload": "2025-04-15T08:00:00-07:00"
+    }
+]
