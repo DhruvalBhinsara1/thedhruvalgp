@@ -1,21 +1,21 @@
 [
     {
         "id": "1",
-        "thumbnail": "/public/images//liam.jpg",
+        "thumbnail": "/images//liam.jpg",
         "title": "Liam Humbled Back to Racing Bulls",
         "description": "After a very long time with RedBull for 2 weeks Liam is kicked to the Junior Team.😂",
         "date_of_upload": "2025-04-15T21:42:00-07:00"
     },
     {
         "id": "2",
-        "thumbnail": "/public/images//landonowins.jpg",
+        "thumbnail": "/images//landonowins.jpg",
         "title": "Lando NoWins Bottles Another",
         "description": "Norris fumbles yet another race while his teammate shines. Same car, mate. 😬",
         "date_of_upload": "2025-04-15T19:42:00-07:00"
     },
     {
         "id": "2",
-        "thumbnail": "/public/images//landonowins.jpg",
+        "thumbnail": "/images//landonowins.jpg",
         "title": "Lando NoWins Bottles Another",
         "description": "Norris fumbles yet another race while his teammate shines. Same car, mate. 😬",
         "date_of_upload": "2025-04-15T19:42:00-07:00"
