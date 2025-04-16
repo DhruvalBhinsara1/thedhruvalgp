@@ -4,11 +4,12 @@ import latestVideosData from '../assets/data/LatestVideos.json';
 const LatestVideos = () => {
     const [videos, setVideos] = useState([]);
     const [error, setError] = useState(null);
+    const [visibleCount, setVisibleCount] = useState(4); // Start with 4 videos
 
     useEffect(() => {
         try {
             console.log('Imported latestVideosData:', latestVideosData);
-            if (!latestVideosData || !Array.isArray(latestVideosData)) {
+            if (!Array.isArray(latestVideosData)) {
                 throw new Error('Invalid or missing video data');
             }
             setVideos(latestVideosData);
@@ -28,7 +29,6 @@ const LatestVideos = () => {
         }
     }, []);
 
-    // Function to extract YouTube video ID from URL
     const extractVideoId = (url) => {
         try {
             const urlObj = new URL(url);
@@ -40,14 +40,12 @@ const LatestVideos = () => {
         }
     };
 
-    // Function to get the best available YouTube thumbnail
     const getYouTubeThumbnail = (videoId) => {
         const highQualityUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
         const mediumQualityUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
         return highQualityUrl;
     };
 
-    // Function to calculate time ago
     const calculateTimeAgo = (date) => {
         const now = new Date('2025-04-15T22:42:00-07:00');
         const diffMs = now - date;
@@ -62,6 +60,10 @@ const LatestVideos = () => {
         return `${diffSeconds}s ago`;
     };
 
+    const handleViewMore = () => {
+        setVisibleCount(prevCount => Math.min(prevCount + 4, 16)); // Increase by 4, max 16
+    };
+
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -72,41 +74,52 @@ const LatestVideos = () => {
             <p className="disclaimer">Not all videos were created by me. Credit goes to the respective owners and creators.</p>
             <div className="carousel">
                 {videos.length > 0 ? (
-                    videos.map((item) => (
-                        <a
-                            href={item.video_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            key={item.id}
-                            style={{ textDecoration: 'none', color: 'inherit' }}
-                        >
-                            <article className="card">
-                                <span className="card-badge">Video</span>
-                                <img
-                                    src={item.thumbnail}
-                                    alt={item.title}
-                                    className="card-image"
-                                    onError={(e) => {
-                                        console.error('High-quality thumbnail failed for:', item.title, e);
-                                        e.target.src = `https://img.youtube.com/vi/${extractVideoId(item.video_url)}/mqdefault.jpg`;
-                                        e.target.onError = null;
-                                    }}
-                                />
-                                <div className="card-content">
-                                    <h3 className="card-title">{item.title}</h3>
-                                    <p className="card-excerpt">{item.description}</p>
-                                    <div className="card-meta">
-                                        <span className="timestamp">{item.timestamp}</span>
-                                        <span className="source">{item.channel}</span>
+                    videos.slice(0, visibleCount).map((item) => (
+                        <div className="card-wrapper" key={item.id}>
+                            <a
+                                href={item.video_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ textDecoration: 'none', color: 'inherit' }}
+                            >
+                                <article className="card">
+                                    <span className="card-badge">Video</span>
+                                    <img
+                                        src={item.thumbnail}
+                                        alt={item.title}
+                                        className="card-image"
+                                        onError={(e) => {
+                                            console.error('High-quality thumbnail failed for:', item.title, e);
+                                            e.target.src = `https://img.youtube.com/vi/${extractVideoId(item.video_url)}/mqdefault.jpg`;
+                                            e.target.onError = null;
+                                        }}
+                                    />
+                                    <div className="card-content">
+                                        <h3 className="card-title">{item.title}</h3>
+                                        <p className="card-excerpt">{item.description}</p>
+                                        <div className="card-meta">
+                                            <span className="timestamp">{item.timestamp}</span>
+                                            <span className="source">{item.channel}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
-                        </a>
+                                </article>
+                            </a>
+                        </div>
                     ))
                 ) : (
                     <p>Loading videos...</p>
                 )}
             </div>
+            {visibleCount < 16 && visibleCount < videos.length && (
+                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                    <button
+                        onClick={handleViewMore}
+                        className="cta view-more"
+                    >
+                        View more
+                    </button>
+                </div>
+            )}
         </section>
     );
 };

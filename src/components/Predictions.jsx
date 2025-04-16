@@ -4,6 +4,7 @@ import predictionsData from '../assets/data/Predictions.json';
 const Predictions = () => {
     const [predictions, setPredictions] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [visibleCount, setVisibleCount] = useState(4); // Start with 4 items
 
     useEffect(() => {
         setPredictions(predictionsData);
@@ -36,11 +37,15 @@ const Predictions = () => {
         setSelectedItem(null);
     };
 
+    const handleViewMore = () => {
+        setVisibleCount(prevCount => Math.min(prevCount + 4, 16)); // Increase by 4, max 16
+    };
+
     return (
         <section id="predictions">
             <h2>Predictions</h2>
             <div className="carousel">
-                {predictions.map((item) => (
+                {predictions.slice(0, visibleCount).map((item) => (
                     <article className="card" key={item.id} onClick={() => handleCardClick(item)}>
                         <span className="card-badge prediction">Prediction</span>
                         <img
@@ -59,7 +64,6 @@ const Predictions = () => {
                     </article>
                 ))}
             </div>
-
             {selectedItem && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -79,6 +83,16 @@ const Predictions = () => {
                             <span className="source">TheDhruvalGP</span>
                         </div>
                     </div>
+                </div>
+            )}
+            {visibleCount < 16 && visibleCount < predictions.length && (
+                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                    <button
+                        onClick={handleViewMore}
+                        className="cta view-more"
+                    >
+                        View more
+                    </button>
                 </div>
             )}
         </section>

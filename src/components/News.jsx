@@ -4,6 +4,7 @@ import newsData from '../assets/data/News.json';
 const News = () => {
     const [news, setNews] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [visibleCount, setVisibleCount] = useState(4); // Start with 4 items
 
     useEffect(() => {
         setNews(newsData);
@@ -36,11 +37,15 @@ const News = () => {
         setSelectedItem(null);
     };
 
+    const handleViewMore = () => {
+        setVisibleCount(prevCount => Math.min(prevCount + 4, 16)); // Increase by 4, max 16
+    };
+
     return (
         <section id="news">
             <h2>News</h2>
             <div className="carousel">
-                {news.map((item) => (
+                {news.slice(0, visibleCount).map((item) => (
                     <article className="card" key={item.id} onClick={() => handleCardClick(item)}>
                         <span className="card-badge">News</span>
                         <img
@@ -59,7 +64,6 @@ const News = () => {
                     </article>
                 ))}
             </div>
-
             {selectedItem && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -79,6 +83,16 @@ const News = () => {
                             <span className="source">TheDhruvalGP</span>
                         </div>
                     </div>
+                </div>
+            )}
+            {visibleCount < 16 && visibleCount < news.length && (
+                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                    <button
+                        onClick={handleViewMore}
+                        className="cta view-more"
+                    >
+                        View more
+                    </button>
                 </div>
             )}
         </section>

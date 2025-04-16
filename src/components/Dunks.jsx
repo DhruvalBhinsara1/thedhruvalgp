@@ -5,6 +5,7 @@ const Dunks = () => {
     const [dunks, setDunks] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
     const [error, setError] = useState(null);
+    const [visibleCount, setVisibleCount] = useState(4); // Start with 4 items
 
     useEffect(() => {
         try {
@@ -46,6 +47,10 @@ const Dunks = () => {
         setSelectedItem(null);
     };
 
+    const handleViewMore = () => {
+        setVisibleCount(prevCount => Math.min(prevCount + 4, 16)); // Increase by 4, max 16
+    };
+
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -55,7 +60,7 @@ const Dunks = () => {
             <h2>Dunks</h2>
             <div className="carousel">
                 {dunks.length > 0 ? (
-                    dunks.map((item) => (
+                    dunks.slice(0, visibleCount).map((item) => (
                         <article className="card" key={item.id} onClick={() => handleCardClick(item)}>
                             <span className="card-badge">Dunk</span>
                             <img
@@ -78,7 +83,6 @@ const Dunks = () => {
                     <p>Loading dunks...</p>
                 )}
             </div>
-
             {selectedItem && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -98,6 +102,16 @@ const Dunks = () => {
                             <span className="source">TheDhruvalGP</span>
                         </div>
                     </div>
+                </div>
+            )}
+            {visibleCount < 16 && visibleCount < dunks.length && (
+                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                    <button
+                        onClick={handleViewMore}
+                        className="cta view-more"
+                    >
+                        View more
+                    </button>
                 </div>
             )}
         </section>
