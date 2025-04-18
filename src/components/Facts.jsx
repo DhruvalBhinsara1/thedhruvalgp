@@ -17,6 +17,10 @@ const Facts = () => {
         setVisibleCount(prevCount => Math.min(prevCount + 4, 16)); // Increase by 4, max 16
     };
 
+    const handleShowLess = () => {
+        setVisibleCount(4); // Reset to initial count
+    };
+
     return (
         <section id="facts">
             <h2>F1 Facts</h2>
@@ -28,16 +32,25 @@ const Facts = () => {
                     </div>
                 ))}
             </div>
-            {visibleCount < 16 && visibleCount < factsData.length && (
-                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                {visibleCount > 4 && (
+                    <button
+                        onClick={handleShowLess}
+                        className="cta view-more"
+                        style={{ marginRight: '1rem' }}
+                    >
+                        Show Less
+                    </button>
+                )}
+                {visibleCount < 16 && visibleCount < factsData.length && (
                     <button
                         onClick={handleViewMore}
                         className="cta view-more"
                     >
-                        View more
+                        View More
                     </button>
-                </div>
-            )}
+                )}
+            </div>
         </section>
     );
 };

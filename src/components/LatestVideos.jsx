@@ -64,6 +64,10 @@ const LatestVideos = () => {
         setVisibleCount(prevCount => Math.min(prevCount + 4, 16)); // Increase by 4, max 16
     };
 
+    const handleShowLess = () => {
+        setVisibleCount(4); // Reset to initial count
+    };
+
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -110,16 +114,25 @@ const LatestVideos = () => {
                     <p>Loading videos...</p>
                 )}
             </div>
-            {visibleCount < 16 && visibleCount < videos.length && (
-                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                {visibleCount > 4 && (
+                    <button
+                        onClick={handleShowLess}
+                        className="cta view-more"
+                        style={{ marginRight: '1rem' }}
+                    >
+                        Show Less
+                    </button>
+                )}
+                {visibleCount < 16 && visibleCount < videos.length && (
                     <button
                         onClick={handleViewMore}
                         className="cta view-more"
                     >
-                        View more
+                        View More
                     </button>
-                </div>
-            )}
+                )}
+            </div>
         </section>
     );
 };
