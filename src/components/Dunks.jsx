@@ -12,13 +12,22 @@ const Dunks = () => {
             if (!dunksData || !Array.isArray(dunksData)) {
                 throw new Error('Invalid or missing dunk data');
             }
-            setDunks(dunksData);
-
             const updatedDunks = dunksData.map(item => ({
                 ...item,
                 timestamp: calculateTimeAgo(new Date(item.date_of_upload))
             }));
             setDunks(updatedDunks);
+
+            // Update timestamps every minute for dynamic "time ago"
+            const interval = setInterval(() => {
+                const refreshedDunks = dunksData.map(item => ({
+                    ...item,
+                    timestamp: calculateTimeAgo(new Date(item.date_of_upload))
+                }));
+                setDunks(refreshedDunks);
+            }, 60000); // Update every 60 seconds
+
+            return () => clearInterval(interval); // Cleanup on unmount
         } catch (err) {
             setError(err.message);
             console.error('Error loading dunk data:', err);
@@ -26,13 +35,15 @@ const Dunks = () => {
     }, []);
 
     const calculateTimeAgo = (date) => {
-        const now = new Date('2025-04-15T22:42:00-07:00');
+        const now = new Date(); // Use current time
         const diffMs = now - date;
-        const diffSeconds = Math.floor(diffMs / 1000);
+        const diffSeconds = Math.floor(Math.abs(diffMs) / 1000);
         const diffMinutes = Math.floor(diffSeconds / 60);
         const diffHours = Math.floor(diffMinutes / 60);
         const diffDays = Math.floor(diffHours / 24);
 
+        // Handle future dates or very recent times
+        if (diffMs < 0 || diffSeconds < 10) return 'just now';
         if (diffDays > 0) return `${diffDays}d ago`;
         if (diffHours > 0) return `${diffHours}h ago`;
         if (diffMinutes > 0) return `${diffMinutes}m ago`;
