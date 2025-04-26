@@ -4,22 +4,15 @@ import predictionsData from '../assets/data/Predictions.json';
 const Predictions = () => {
     const [predictions, setPredictions] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [error, setError] = useState(null);
     const [visibleCount, setVisibleCount] = useState(4); // Start with 4 items
 
     useEffect(() => {
-        const updatedPredictions = [...predictionsData].sort((a, b) => {
-            const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
-            const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
-            return bId - aId; // Descending order
-        }).map(item => ({
-            ...item,
-            timestamp: calculateTimeAgo(new Date(item.date_of_upload))
-        }));
-        setPredictions(updatedPredictions);
-
-        // Optional: Update timestamps every minute for dynamic "time ago"
-        const interval = setInterval(() => {
-            const refreshedPredictions = [...predictionsData].sort((a, b) => {
+        try {
+            if (!predictionsData || !Array.isArray(predictionsData)) {
+                throw new Error('Invalid or missing predictions data');
+            }
+            const updatedPredictions = [...predictionsData].sort((a, b) => {
                 const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
                 const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
                 return bId - aId; // Descending order
@@ -27,10 +20,26 @@ const Predictions = () => {
                 ...item,
                 timestamp: calculateTimeAgo(new Date(item.date_of_upload))
             }));
-            setPredictions(refreshedPredictions);
-        }, 60000); // Update every 60 seconds
+            setPredictions(updatedPredictions);
 
-        return () => clearInterval(interval); // Cleanup on unmount
+            // Update timestamps every minute for dynamic "time ago"
+            const interval = setInterval(() => {
+                const refreshedPredictions = [...predictionsData].sort((a, b) => {
+                    const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
+                    const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
+                    return bId - aId; // Descending order
+                }).map(item => ({
+                    ...item,
+                    timestamp: calculateTimeAgo(new Date(item.date_of_upload))
+                }));
+                setPredictions(refreshedPredictions);
+            }, 60000); // Update every 60 seconds
+
+            return () => clearInterval(interval); // Cleanup on unmount
+        } catch (err) {
+            setError(err.message);
+            console.error('Error loading predictions data:', err);
+        }
     }, []);
 
     const calculateTimeAgo = (date) => {
@@ -65,28 +74,36 @@ const Predictions = () => {
         setVisibleCount(4); // Reset to initial count
     };
 
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <section id="predictions">
             <h2>Predictions</h2>
             <div className="carousel">
-                {predictions.slice(0, visibleCount).map((item) => (
-                    <article className="card" key={item.id} onClick={() => handleCardClick(item)}>
-                        <span className="card-badge prediction">Prediction</span>
-                        <img
-                            src={item.img}
-                            alt={item.title}
-                            className="card-image"
-                        />
-                        <div className="card-content">
-                            <h3 className="card-title">{item.title}</h3>
-                            <p className="card-excerpt">{item.content_text}</p>
-                            <div className="card-meta">
-                                <span className="timestamp">{item.timestamp}</span>
-                                <span className="source">TheDhruvalGP</span>
+                {predictions.length > 0 ? (
+                    predictions.slice(0, visibleCount).map((item) => (
+                        <article className="card" key={item.id} onClick={() => handleCardClick(item)}>
+                            <span className="card-badge prediction">Prediction</span>
+                            <img
+                                src={item.img}
+                                alt={item.title}
+                                className="card-image"
+                            />
+                            <div className="card-content">
+                                <h3 className="card-title">{item.title}</h3>
+                                <p className="card-excerpt">{item.content_text}</p>
+                                <div className="card-meta">
+                                    <span className="timestamp">{item.timestamp}</span>
+                                    <span className="source">TheDhruvalGP</span>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                ))}
+                        </article>
+                    ))
+                ) : (
+                    <p>Loading predictions...</p>
+                )}
             </div>
             {selectedItem && (
                 <div className="modal-overlay" onClick={closeModal}>
