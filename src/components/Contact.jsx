@@ -32,24 +32,10 @@ const Contact = () => {
             return;
         }
 
+        // Mock response for local testing
         try {
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            let data;
-            try {
-                data = await response.json();
-            } catch (jsonError) {
-                throw new Error('Invalid response from server');
-            }
-
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to send message.');
-            }
-
+            // Simulate a successful API call
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
             setStatus('success');
             setFormData({
                 name: '',
@@ -59,7 +45,7 @@ const Contact = () => {
                 message: ''
             });
         } catch (err) {
-            setError(err.message || 'Pit stop failed—try again!');
+            setError('Pit stop failed—try again!');
             setStatus(null);
         }
     };
