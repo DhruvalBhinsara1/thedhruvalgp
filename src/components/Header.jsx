@@ -11,6 +11,7 @@ const Header = () => {
                     <li><a href="#news">News</a></li>
                     <li><a href="#predictions">Predictions</a></li>
                     <li><a href="#dunks">Dunks</a></li>
+                    <li><a href="#contact">Pits</a></li>
                 </ul>
             </nav>
         </header>
