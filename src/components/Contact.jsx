@@ -39,8 +39,15 @@ const Contact = () => {
                 body: JSON.stringify(formData)
             });
 
+            let data;
+            try {
+                data = await response.json();
+            } catch (jsonError) {
+                throw new Error('Invalid response from server');
+            }
+
             if (!response.ok) {
-                throw new Error('Failed to send message.');
+                throw new Error(data.error || 'Failed to send message.');
             }
 
             setStatus('success');
@@ -52,7 +59,7 @@ const Contact = () => {
                 message: ''
             });
         } catch (err) {
-            setError('Pit stop failed—try again!');
+            setError(err.message || 'Pit stop failed—try again!');
             setStatus(null);
         }
     };
@@ -121,9 +128,9 @@ const Contact = () => {
                                 onChange={handleChange}
                                 className="form-input"
                             >
-                                <option value="Race Day Urgent">Race Day Urgent (Fastest)</option>
-                                <option value="Quali Speed">Quali Speed </option>
-                                <option value="Practice Lap">Practice Lap </option>
+                                <option value="Race Day Urgent">Race Day Urgent</option>
+                                <option value="Quali Speed">Quali Speed</option>
+                                <option value="Practice Lap">Practice Lap</option>
                             </select>
                         </div>
                         <div className="form-group">
