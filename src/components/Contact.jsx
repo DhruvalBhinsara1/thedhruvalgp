@@ -32,10 +32,19 @@ const Contact = () => {
             return;
         }
 
-        // Mock response for local testing
         try {
-            // Simulate a successful API call
-            await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message.');
+            }
+
             setStatus('success');
             setFormData({
                 name: '',
@@ -45,7 +54,7 @@ const Contact = () => {
                 message: ''
             });
         } catch (err) {
-            setError('Pit stop failed—try again!');
+            setError(err.message || 'Pit stop failed—try again!');
             setStatus(null);
         }
     };
