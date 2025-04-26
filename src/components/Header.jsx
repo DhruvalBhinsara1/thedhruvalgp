@@ -16,7 +16,6 @@ const Header = () => {
             <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
                 <ul>
                     <li><a href="#home" onClick={toggleMenu}>Home</a></li>
-                    <li><a href="#shorts" onClick={toggleMenu}>Shorts</a></li>
                     <li><a href="#latest-videos" onClick={toggleMenu}>Videos</a></li>
                     <li><a href="#news" onClick={toggleMenu}>News</a></li>
                     <li><a href="#predictions" onClick={toggleMenu}>Predictions</a></li>
