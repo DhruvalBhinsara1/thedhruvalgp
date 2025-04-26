@@ -52,7 +52,7 @@ const Shorts = () => {
 
     return (
         <section id="shorts" className="shorts-section">
-            <h2>Latest F1 Shorts</h2>
+            <h2>Latest Shorts</h2>
             {isLoading ? (
                 <div className="loading-message">Checking the pit lane for new shorts...</div>
             ) : error ? (
