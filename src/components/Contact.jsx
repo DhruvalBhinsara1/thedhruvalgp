@@ -150,7 +150,7 @@ const Contact = () => {
                                 <span className="button-loading">
                                     <svg
                                         className="spinner"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns="https://cdn-icons-png.flaticon.com/512/3305/3305803.png"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                     >
