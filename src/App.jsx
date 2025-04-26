@@ -8,6 +8,7 @@ import Facts from './components/Facts';
 import Footer from './components/Footer';
 import LatestVideos from './components/LatestVideos'; // Added this import
 import Contact from './components/Contact';
+import LiveStream from './components/LiveStream';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,6 +62,7 @@ const App = () => {
       <Predictions />
       <Dunks />
       <Facts />
+      <LiveStream />
       <Contact />
       <Footer />
     </div>
