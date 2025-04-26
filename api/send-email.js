@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 // Configure the transporter using environment variables
 const transporter = nodemailer.createTransport({
@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     // Ensure we always return JSON
     res.setHeader('Content-Type', 'application/json');
 
@@ -45,26 +45,26 @@ module.exports = async (req, res) => {
         // Email options
         const mailOptions = {
             from: process.env.SMTP_EMAIL,
-            to: 'your-personal-email@example.com', // Replace with a test email
+            to: process.env.SMTP_EMAIL, // Send to yourself
             replyTo: email,
             subject: `${subject} - Priority: ${priority}`,
             text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nPriority: ${priority}\nMessage: ${message}`,
             html: `
-                     <h2>New Contact Form Submission</h2>
-                     <p><strong>Name:</strong> ${name}</p>
-                     <p><strong>Email:</strong> ${email}</p>
-                     <p><strong>Subject:</strong> ${subject}</p>
-                     <p><strong>Priority:</strong> ${priority}</p>
-                     <p><strong>Message:</strong> ${message}</p>
-                 `,
+                <h2>New Contact Form Submission</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <p><strong>Priority:</strong> ${priority}</p>
+                <p><strong>Message:</strong> ${message}</p>
+            `,
         };
 
         console.log('Attempting to send email with options:', mailOptions);
 
-        // Send the email
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully');
-        return res.status(200).json({ message: 'Email sent successfully' });
+        // Send the email and log the response
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully, response:', info.response);
+        return res.status(200).json({ message: 'Email sent successfully', info: info.response });
     } catch (error) {
         console.error('Error in /api/send-email:', error.message, error.stack);
         return res.status(500).json({ error: 'Failed to send email', details: error.message });
