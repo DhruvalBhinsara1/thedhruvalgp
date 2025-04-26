@@ -68,7 +68,7 @@ const Contact = () => {
                 </p>
                 <div className="contact-form-wrapper glass">
                     <p className="contact-intro">
-                        Welcome to the pit lane! I’m TheDhruvalGP, your go-to F1 fan for the latest news, bold predictions, and spicy roasts. Got thoughts on the Saudi GP track delay or Verstappen’s Red Bull drama? Drop me a message—I’ll respond faster than a McLaren pit stop!
+                        Welcome to the pit lane! I’m TheDhruvalGP, your go-to F1 fan for the latest news, bold predictions, and spicy roasts. Got thoughts on ontrack or offtrack drama Drop me a message—I’ll respond faster than a Sauber pit stop!
                     </p>
                     <form onSubmit={handleSubmit} className="contact-form">
                         <div className="form-row">
