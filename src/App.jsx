@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import LatestVideos from './components/LatestVideos'; // Added this import
 import Contact from './components/Contact';
 import LiveStream from './components/LiveStream';
+import Shorts from './components/Shorts';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,6 +58,7 @@ const App = () => {
     <div className="app">
       <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <Hero />
+      <Shorts />
       <LatestVideos />
       <News />
       <Predictions />
