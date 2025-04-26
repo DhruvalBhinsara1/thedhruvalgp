@@ -12,9 +12,11 @@ const LatestVideos = () => {
             if (!Array.isArray(latestVideosData)) {
                 throw new Error('Invalid or missing video data');
             }
-            setVideos(latestVideosData);
-
-            const updatedVideos = latestVideosData.map(item => {
+            const updatedVideos = [...latestVideosData].sort((a, b) => {
+                const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
+                const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
+                return bId - aId; // Descending order
+            }).map(item => {
                 const videoId = extractVideoId(item.video_url);
                 return {
                     ...item,

@@ -7,7 +7,11 @@ const Predictions = () => {
     const [visibleCount, setVisibleCount] = useState(4); // Start with 4 items
 
     useEffect(() => {
-        const updatedPredictions = predictionsData.map(item => ({
+        const updatedPredictions = [...predictionsData].sort((a, b) => {
+            const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
+            const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
+            return bId - aId; // Descending order
+        }).map(item => ({
             ...item,
             timestamp: calculateTimeAgo(new Date(item.date_of_upload))
         }));
@@ -15,8 +19,12 @@ const Predictions = () => {
 
         // Optional: Update timestamps every minute for dynamic "time ago"
         const interval = setInterval(() => {
-            const refreshedPredictions = predictionsData.map(item => ({
-                ...item, // Fixed: Use spread operator (...item)
+            const refreshedPredictions = [...predictionsData].sort((a, b) => {
+                const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
+                const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
+                return bId - aId; // Descending order
+            }).map(item => ({
+                ...item,
                 timestamp: calculateTimeAgo(new Date(item.date_of_upload))
             }));
             setPredictions(refreshedPredictions);

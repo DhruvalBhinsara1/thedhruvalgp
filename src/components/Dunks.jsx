@@ -12,7 +12,11 @@ const Dunks = () => {
             if (!dunksData || !Array.isArray(dunksData)) {
                 throw new Error('Invalid or missing dunk data');
             }
-            const updatedDunks = dunksData.map(item => ({
+            const updatedDunks = [...dunksData].sort((a, b) => {
+                const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
+                const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
+                return bId - aId; // Descending order
+            }).map(item => ({
                 ...item,
                 timestamp: calculateTimeAgo(new Date(item.date_of_upload))
             }));
@@ -20,7 +24,11 @@ const Dunks = () => {
 
             // Update timestamps every minute for dynamic "time ago"
             const interval = setInterval(() => {
-                const refreshedDunks = dunksData.map(item => ({
+                const refreshedDunks = [...dunksData].sort((a, b) => {
+                    const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
+                    const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
+                    return bId - aId; // Descending order
+                }).map(item => ({
                     ...item,
                     timestamp: calculateTimeAgo(new Date(item.date_of_upload))
                 }));

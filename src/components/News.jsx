@@ -7,8 +7,11 @@ const News = () => {
     const [visibleCount, setVisibleCount] = useState(4); // Start with 4 items
 
     useEffect(() => {
-        setNews(newsData);
-        const updatedNews = newsData.map(item => ({
+        const updatedNews = [...newsData].sort((a, b) => {
+            const aId = typeof a.id === 'string' ? parseInt(a.id) : a.id;
+            const bId = typeof b.id === 'string' ? parseInt(b.id) : b.id;
+            return bId - aId; // Descending order
+        }).map(item => ({
             ...item,
             timestamp: calculateTimeAgo(new Date(item.date_of_upload))
         }));
