@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Header = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <header className="navbar glass">
             <div className="logo">TheDhruvalGP</div>
-            <nav>
+            <button className="hamburger" onClick={toggleMenu}>
+                <span className="hamburger-icon">☰</span>
+            </button>
+            <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#shorts">Shorts</a></li>
-                    <li><a href="#latest-videos">Videos</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#predictions">Predictions</a></li>
-                    <li><a href="#dunks">Dunks</a></li>
-                    <li><a href="#contact">Pits</a></li>
+                    <li><a href="#home" onClick={toggleMenu}>Home</a></li>
+                    <li><a href="#shorts" onClick={toggleMenu}>Shorts</a></li>
+                    <li><a href="#latest-videos" onClick={toggleMenu}>Videos</a></li>
+                    <li><a href="#news" onClick={toggleMenu}>News</a></li>
+                    <li><a href="#predictions" onClick={toggleMenu}>Predictions</a></li>
+                    <li><a href="#dunks" onClick={toggleMenu}>Dunks</a></li>
+                    <li><a href="#contact" onClick={toggleMenu}>Pits</a></li>
                 </ul>
             </nav>
         </header>
