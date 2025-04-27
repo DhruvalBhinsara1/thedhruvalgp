@@ -98,7 +98,3 @@ For detailed guidelines, refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 ## 📬 Contact
 
 Developed by [Dhruval Bhinsara](https://github.com/DhruvalBhinsara1). For inquiries or feedback, please open an issue or contact via [LinkedIn](https://www.linkedin.com/in/dhruvalbhinsara).
-
----
-
-Feel free to customize this `README.md` further to match your project's specifics. Including badges, detailed contribution guidelines, and a changelog can also enhance the documentation. 
