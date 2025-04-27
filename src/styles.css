@@ -15,6 +15,18 @@
     --border-radius: 16px;
 }
 
+/* Light Mode Variables */
+[data-theme="light"] {
+    --text-light: #1c1c1c;
+    --text-muted: rgba(0, 0, 0, 0.7);
+    --bg-dark: #ffffff;
+    --bg-darker: #f0f0f0;
+    --glass-bg: rgba(255, 0, 255, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.3);
+}
+
 /* Base Styles */
 html {
     box-sizing: border-box;
@@ -23,6 +35,7 @@ html {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
 }
 
 *,
@@ -42,59 +55,6 @@ body {
     position: relative;
     width: 100%;
     min-height: 100vh;
-}
-
-/* Background Circles */
-body::before {
-    content: '';
-    position: fixed;
-    top: 10%;
-    left: 10%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, var(--secondary) 0%, rgba(255, 30, 86, 0) 70%);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0.3;
-    animation: pulse 10s infinite alternate;
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    bottom: 20%;
-    right: 10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, var(--accent-purple) 0%, rgba(161, 0, 255, 0) 70%);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0.3;
-    animation: pulse 12s infinite alternate;
-}
-
-@media (max-width: 768px) {
-    body::before {
-        width: 200px;
-        height: 200px;
-    }
-
-    body::after {
-        width: 250px;
-        height: 250px;
-    }
-}
-
-@media (max-width: 480px) {
-    body::before {
-        width: 150px;
-        height: 150px;
-    }
-
-    body::after {
-        width: 200px;
-        height: 200px;
-    }
 }
 
 /* Glassmorphism */
@@ -118,7 +78,7 @@ header.glass:hover {
     box-shadow: var(--shadow);
 }
 
-/* Navbar */
+/* Navbar - Fixed Colors */
 header.navbar {
     position: fixed;
     top: 20px;
@@ -130,40 +90,34 @@ header.navbar {
     justify-content: center;
     padding: 0.6rem 1rem;
     background: rgba(75, 0, 130, 0.6);
-    /* Adjusted to 60% opacity for more translucency */
+    /* Fixed color */
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Fixed color */
     box-shadow: var(--shadow);
     border-radius: 50px;
     width: auto;
     max-width: 800px;
-    /* Increased from 600px to make the pill wider */
     overflow: visible;
     transition: box-shadow var(--transition);
-    /* Transition only shadow for hover */
 }
 
 /* Override glass hover to prevent horizontal movement */
 header.navbar:hover {
     transform: translateX(-50%);
-    /* Preserve horizontal centering */
     box-shadow: var(--shadow-hover);
-    /* Add shadow effect on hover */
 }
 
 /* Ensure glass class doesn't interfere with navbar positioning */
 .glass:hover {
     transform: translateY(-4px);
-    /* Apply vertical lift only to other glass elements */
     box-shadow: var(--shadow-hover);
 }
 
 /* Override hover for header to prevent movement */
 header.glass:hover {
     transform: translateX(-50%);
-    /* Preserve horizontal centering for header */
     box-shadow: var(--shadow-hover);
-    /* Add shadow effect */
 }
 
 .logo {
@@ -179,8 +133,10 @@ nav ul {
     align-items: center;
 }
 
-nav ul li a {
-    color: var(--text-light);
+nav ul li a,
+nav ul li button {
+    color: #ffffff;
+    /* Fixed color */
     text-decoration: none;
     font-size: 1.5rem;
     padding: 0.5rem;
@@ -193,27 +149,48 @@ nav ul li a {
     height: 40px;
     opacity: 1;
     visibility: visible;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 nav ul li a:hover,
+nav ul li button:hover,
 nav ul li a.active {
-    background: var(--secondary);
-    color: var(--text-light);
+    background: #ff4500;
+    /* Fixed color */
+    color: #ffffff;
+    /* Fixed color */
 }
 
 nav ul li::before,
 nav ul li::after,
 nav ul li a::before,
-nav ul li a::after {
+nav ul li a::after,
+nav ul li button::before,
+nav ul li button::after {
     content: none;
-    /* Prevent pseudo-elements from adding content */
 }
 
 .nav-text {
     display: none;
 }
 
-/* Media queries for navbar */
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.theme-toggle:focus {
+    outline: 2px solid #ff0000;
+    /* Fixed color */
+    outline-offset: 2px;
+}
+
+/* Media queries for navbar - Fixed Colors */
 @media (max-width: 600px) {
     header.navbar {
         padding: 0.8rem 1rem;
@@ -223,10 +200,11 @@ nav ul li a::after {
         transform: translateX(-50%);
         width: auto;
         max-width: 800px;
-        /* Increased to match the wider pill */
         border-radius: 50px;
         background: rgba(75, 0, 130, 0.6);
-        /* Match the translucency */
+        /* Fixed color */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Fixed color */
     }
 
     .logo {
@@ -253,7 +231,8 @@ nav ul li a::after {
         margin: 0;
     }
 
-    .nav-menu li a {
+    .nav-menu li a,
+    .nav-menu li button {
         font-size: 1.5rem;
         padding: 0.5rem;
         width: 40px;
@@ -261,14 +240,18 @@ nav ul li a::after {
         text-align: center;
         background: none;
         border-radius: 50px;
-        color: var(--text-light);
+        color: #ffffff;
+        /* Fixed color */
         transition: background var(--transition), color var(--transition);
     }
 
     .nav-menu li a:hover,
+    .nav-menu li button:hover,
     .nav-menu li a.active {
-        background: var(--secondary);
-        color: var(--text-light);
+        background: #ff4500;
+        /* Fixed color */
+        color: #ffffff;
+        /* Fixed color */
     }
 
     .nav-text {
@@ -279,17 +262,17 @@ nav ul li a::after {
 @media (max-width: 480px) {
     header.navbar {
         max-width: 90%;
-        /* Still takes 90% of the viewport width on small screens */
     }
 
-    .nav-menu li a {
+    .nav-menu li a,
+    .nav-menu li button {
         font-size: 1.2rem;
         width: 35px;
         height: 35px;
     }
 }
 
-/* Hero Section */
+/* Hero Section - Fixed Colors */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -308,6 +291,7 @@ nav ul li a::after {
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+    /* Fixed gradient */
     width: 100vw;
     height: 100vh;
 }
@@ -334,14 +318,16 @@ nav ul li a::after {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
-    color: var(--text-light);
+    color: #ffffff;
+    /* Fixed color */
     font-family: 'Roboto', sans-serif;
 }
 
 .hero p {
     font-size: clamp(1.1rem, 2.5vw, 1.3rem);
     font-weight: 400;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.7);
+    /* Fixed color */
     margin-bottom: 2.5rem;
     font-family: 'Open Sans', sans-serif;
 }
@@ -349,7 +335,8 @@ nav ul li a::after {
 .cta {
     display: inline-block;
     padding: 0.85rem 2.5rem;
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    background: linear-gradient(45deg, #ff0000, #ff4500);
+    /* Fixed colors */
     color: #fff;
     text-decoration: none;
     border-radius: 50px;
@@ -367,7 +354,8 @@ nav ul li a::after {
 }
 
 .cta:focus {
-    outline: 3px solid var(--primary);
+    outline: 3px solid #ff0000;
+    /* Fixed color */
     outline-offset: 4px;
 }
 
@@ -566,7 +554,7 @@ section h2 {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.3));
+    background: linear-gradient(to bottom, rgba(255, 255, 232, 0.05), rgba(0, 0, 0, 0.3));
     min-height: 0;
 }
 
@@ -617,11 +605,9 @@ section h2 {
 .card-video {
     width: 100%;
     height: 200px;
-    /* Fixed height for 16:9 aspect ratio */
     object-fit: cover;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     background: var(--bg-dark) url('https://via.placeholder.com/480x270?text=No+Thumbnail') no-repeat center;
-    /* Fallback image */
     background-size: cover;
     transition: transform var(--transition);
 }
@@ -630,7 +616,6 @@ section h2 {
     transform: scale(1.05);
 }
 
-/* Ensure other media queries align */
 @media (max-width: 768px) {
     .card-video {
         height: 180px;
@@ -828,7 +813,7 @@ footer p {
 .modal-content {
     background: rgba(0, 0, 128, 0.2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
     padding: 2.5rem;
     width: 90%;
@@ -1019,16 +1004,6 @@ footer p {
     }
 }
 
-@keyframes pulse {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.1);
-    }
-}
-
 /* Accessibility */
 :focus {
     outline: 2px solid var(--primary);
@@ -1052,7 +1027,8 @@ footer p {
     .card,
     .cta,
     nav ul li a,
-    .card-content a {
+    .card-content a,
+    nav ul li button {
         transition: none;
     }
 
@@ -1061,11 +1037,6 @@ footer p {
     section h2,
     .fact,
     footer {
-        animation: none;
-    }
-
-    body::before,
-    body::after {
         animation: none;
     }
 }
@@ -1502,22 +1473,18 @@ footer p {
 
     .social-icon.youtube:hover {
         color: #ff0000;
-        /* YouTube red */
     }
 
     .social-icon.x:hover {
         color: #00acee;
-        /* X blue */
     }
 
     .social-icon.github:hover {
         color: #333;
-        /* GitHub dark gray */
     }
 
     .social-icon.linkedin:hover {
         color: #0077b5;
-        /* LinkedIn blue */
     }
 
     @media (max-width: 768px) {

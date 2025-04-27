@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Header = () => {
+    const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
+
+    // Load saved theme from localStorage on mount
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setIsDarkMode(savedTheme === 'dark');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    }, []);
+
+    // Toggle theme and save to localStorage
+    const toggleTheme = () => {
+        const newTheme = !isDarkMode ? 'dark' : 'light';
+        setIsDarkMode(!isDarkMode);
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    };
+
     return (
         <header className="navbar glass">
             <nav className="nav-menu">
@@ -40,6 +59,16 @@ const Header = () => {
                             <i className="fas fa-address-book"></i>
                             <span className="nav-text">Pits</span>
                         </a>
+                    </li>
+                    <li>
+                        <button
+                            onClick={toggleTheme}
+                            aria-label="Toggle Dark Mode"
+                            className="theme-toggle"
+                        >
+                            <i className={isDarkMode ? 'fas fa-moon' : 'fas fa-sun'}></i>
+                            <span className="nav-text">Theme</span>
+                        </button>
                     </li>
                 </ul>
             </nav>
