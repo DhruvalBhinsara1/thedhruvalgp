@@ -3,15 +3,15 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>TheDhruvalGP | Official Site</title>
+  <title>TheDhruvalGP | Dhruval GP Official Site</title>
   <meta name="description"
-    content="Welcome to the official website of TheDhruvalGP, showcasing innovative projects, YouTube content, and creative work." />
+    content="Official site of TheDhruvalGP (Dhruval GP). Explore innovative projects, YouTube content, and creative work by Dhruval." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/icon.png" />
 
-  <!-- Sitemap Reference (Optional, update path as needed) -->
+  <!-- Sitemap Reference -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
   <!-- Google Site Verification -->
@@ -20,16 +20,17 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://thedhruvalgp.vercel.app/" />
-  <meta property="og:title" content="TheDhruvalGP | Official Site" />
+  <meta property="og:title" content="TheDhruvalGP | Dhruval GP Official Site" />
   <meta property="og:description"
-    content="Official website of TheDhruvalGP, featuring projects, YouTube videos, and more!" />
+    content="Official site of TheDhruvalGP (Dhruval GP). Discover projects, YouTube videos, and creative work by Dhruval." />
   <meta property="og:image" content="https://thedhruvalgp.vercel.app/preview.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://thedhruvalgp.vercel.app/" />
-  <meta name="twitter:title" content="TheDhruvalGP | Official Site" />
-  <meta name="twitter:description" content="Explore the world of TheDhruvalGP — Projects, content, and creativity." />
+  <meta name="twitter:title" content="TheDhruvalGP | Dhruval GP Official Site" />
+  <meta name="twitter:description"
+    content="Explore the world of TheDhruvalGP (Dhruval GP) — Projects, YouTube content, and creativity." />
   <meta name="twitter:image" content="https://thedhruvalgp.vercel.app/preview.png" />
 
   <!-- Font Awesome -->
@@ -83,18 +84,31 @@
 
   <!-- Header landmark -->
   <header role="banner">
-    <!-- Add navigation or branding here in React components -->
-    <!-- Example: <nav role="navigation"><ul>...</ul></nav> -->
+    <nav role="navigation">
+      <ul>
+        <li><a href="/" aria-label="Home page of TheDhruvalGP">Home</a></li>
+        <li><a href="/projects" aria-label="Dhruval GP projects">Projects</a></li>
+        <li><a href="/about" aria-label="About Dhruval GP">About</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Main content landmark -->
   <main role="main" id="main-content">
+    <!-- Static content for crawlers (overwritten by React if needed) -->
+    <section aria-labelledby="welcome-heading">
+      <h1 id="welcome-heading">Welcome to TheDhruvalGP - Dhruval GP’s Official Site</h1>
+      <p>TheDhruvalGP is the creative hub of Dhruval GP, showcasing innovative projects, engaging YouTube content, and
+        unique tech creations by Dhruval.</p>
+      <img src="/preview.png" alt="Dhruval GP project showcase" width="800" height="400" />
+    </section>
+
     <!-- React root for dynamic content -->
     <div id="root"></div>
 
     <!-- Accessibility and SEO notes for React developers:
       - Use semantic HTML (e.g., <button>, <h1>, <ul>) in React components.
-      - Ensure images have descriptive alt text (e.g., <img alt="Description">).
+      - Ensure images have descriptive alt text (e.g., <img alt="Dhruval GP project">).
       - Make interactive elements keyboard-accessible (tabindex="0", onKeyDown).
       - Label Font Awesome icons with aria-label or aria-hidden="true".
       - For ads, wrap in <div aria-label="Advertisement"> if possible.
@@ -108,8 +122,10 @@
 
   <!-- Footer landmark -->
   <footer role="contentinfo">
-    <!-- Add footer content here in React components -->
-    <!-- Example: <p>© 2025 TheDhruvalGP</p> -->
+    <p>© 2025 TheDhruvalGP. All rights reserved.</p>
+    <p>Follow Dhruval GP on <a href="https://youtube.com/@TheDhruvalGP"
+        aria-label="Dhruval GP YouTube channel">YouTube</a> and <a href="https://x.com/TheDhruvalGP"
+        aria-label="Dhruval GP Twitter">Twitter/X</a>.</p>
   </footer>
 
   <!-- React entry point -->
